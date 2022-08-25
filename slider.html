@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slider</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .wrapper {
+      width: 400px;
+      height: 400px;
+      margin: 100px auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slide {
+      width: 100%;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    .other {
+      display: flex;
+      margin: 0 -5px;
+    }
+
+    .other img {
+      width: 50px;
+      flex-grow: 1;
+      margin: 0 5px;
+    }
+
+    .other img:not(.selected) {
+      filter: brightness(50%);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+
+    <div class="slide">
+      <img src="images/animal1.jpg" alt="">
+    </div>
+
+    <div class="other">
+      <img src="images/animal1.jpg" alt="" class="selected">
+      <img src="images/animal2.jpg" alt="">
+      <img src="images/animal3.jpg" alt="">
+      <img src="images/animal4.jpg" alt="">
+      <img src="images/animal5.jpg" alt="">
+      <img src="images/animal6.jpg" alt="">
+    </div>
+  </div>
+
+  <script>
+    const slideImage = document.querySelector(".slide img");
+    const smallImages = document.querySelectorAll(".other img");
+
+    for (let i = 0; i < smallImages.length; i++) {
+      smallImages[i].addEventListener("click", function () {
+
+        for (let j = 0; j < smallImages.length; j++) {
+          smallImages[j].classList.remove("selected");
+        }
+
+        slideImage.src = smallImages[i].src;
+        smallImages[i].classList.add("selected");
+      });
+    }
+  </script>
+</body>
+
+</html>
